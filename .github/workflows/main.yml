@@ -1,0 +1,44 @@
+name: Flutter Build APK
+
+# This triggers the build every time you "push" code to the 'main' branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out the code from your repo
+      - uses: actions/checkout@v4
+
+      # 2. Set up Java (required for Android builds)
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      # 3. Set up Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x' # Uses the latest stable 3.x version
+          channel: 'stable'
+
+      # 4. Get Flutter dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 5. Build the APK
+      - name: Build APK
+        run: flutter build apk --release
+
+      # 6. Upload the APK as an "Artifact" so you can download it
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
