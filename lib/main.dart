@@ -101,7 +101,7 @@ class _GameScreenState extends State<GameScreen> {
   void _playGame(int playerIndex) {
     if (isPlaying) return;
 
-    HapticFeedback.lightImpact(); // Professional touch: Tactile feedback
+    HapticFeedback.mediumImpact(); // Professional touch: Tactile feedback
 
     setState(() {
       isPlaying = true;
