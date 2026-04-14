@@ -35,7 +35,7 @@ class WelcomeScreen extends StatelessWidget {
               "ROCK • PAPER • SCISSORS",
               style: TextStyle(
                 fontWeight: FontWeight.w900,
-                fontSize: 28,
+                fontSize: 18,
                 letterSpacing: 2,
                 color: Colors.cyanAccent,
                 shadows: [
