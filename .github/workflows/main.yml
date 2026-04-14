@@ -32,13 +32,15 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # 5. Build the APK
+     # 5. Build the APK and rename it
       - name: Build APK
-        run: flutter build apk --release
+        run: |
+          flutter build apk --release
+          mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/stone_paper_scissor.apk
 
-      # 6. Upload the APK as an "Artifact" so you can download it
+      # 6. Upload the renamed APK
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: release-apk
+          name: my-app-build # This is the name of the ZIP folder
           path: build/app/outputs/flutter-apk/stone_paper_scissor.apk
